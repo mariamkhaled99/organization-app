@@ -5,24 +5,23 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      # - db
       - redis 
     environment:
       - SECRET_KEY=${SECRET_KEY}    
       - ALGORITHM=${ALGORITHUM}   
       - DATABASE_URL=${MONGO_URL} 
-      # - DATABASE_URL=mongodb://mongo:vFhIqhLMNwwcrxOAOZrVVsVswigfFFLj@mongodb.railway.internal:27017/organization
       # - DATABASE_URL=mongodb://db:27017/organization
       - REDIS_URL=redis://redis:6379 
     volumes:
       - .:/app  
 
-  db:
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./data:/data/db
+  # db:
+  #   image: mongo
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - ./data:/data/db
 
   redis: 
     image: redis:alpine  
