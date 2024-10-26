@@ -20,7 +20,8 @@ router = APIRouter()
 
 
 
-MONGO_URL = os.getenv('MONGO_URL')
+MONGO_URL = os.getenv('DATABASE_URL')
+print(f"MONGO_URL:{MONGO_URL}")
 
 # Database setup
 # MONGO_URL = "mongodb://db:27017/organization"

@@ -10,7 +10,7 @@ services:
     environment:
       - SECRET_KEY=${SECRET_KEY}    
       - ALGORITHM=${ALGORITHUM}   
-      # - DATABASE_URL=${MONGO_URL} 
+      - DATABASE_URL=${MONGO_URL} 
       # - DATABASE_URL=mongodb://db:27017/organization
       - REDIS_URL=redis://redis:6379 
     volumes:
