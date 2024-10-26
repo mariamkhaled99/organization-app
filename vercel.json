@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "organization-app/api.py",
+        "src": "organization-app/main.py",
         "use": "@vercel/python"
       }
     ],
@@ -15,7 +15,7 @@
     "routes": [
       {
         "src": "/(.*)",
-         "dest": "organization-app/api.py"
+         "dest": "organization-app/main.py"
       }
     ]
   }
