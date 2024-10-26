@@ -2,8 +2,8 @@
     "version": 2,
     "builds": [
       {
-        "src": "organization-app/main.py",
-        "use": "@vercel/python"
+        "src": "Dockerfile",  
+        "use": "dockerfile"
       }
     ],
     "env": {
@@ -15,9 +15,8 @@
     "routes": [
       {
         "src": "/(.*)",
-         "dest": "organization-app/main.py"
+        "dest": "/"
       }
     ]
   }
   
-
