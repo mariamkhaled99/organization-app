@@ -20,7 +20,7 @@ router = APIRouter()
 
 
 
-MONGO_URL = os.getenv('DATABASE_URL','mongodb://mongo:vFhIqhLMNwwcrxOAOZrVVsVswigfFFLj@mongodb.railway.internal:27017')
+MONGO_URL = os.getenv('DATABASE_URL','mongodb://mongo:vFhIqhLMNwwcrxOAOZrVVsVswigfFFLj@autorack.proxy.rlwy.net:58326/organization?retryWrites=true&w=majority&appName=organization-app&authSource=admin')
 print(f"MONGO_URL:{MONGO_URL}")
 
 # Database setup
