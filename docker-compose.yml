@@ -10,8 +10,8 @@ services:
     environment:
       - SECRET_KEY=${SECRET_KEY}    
       - ALGORITHM=${ALGORITHUM}   
-      # - DATABASE_URL=${MongoDB.MONGO_URL}  
-      - DATABASE_URL=mongodb://mongo:vFhIqhLMNwwcrxOAOZrVVsVswigfFFLj@autorack.proxy.rlwy.net:58326/organization
+      - DATABASE_URL=${MONGO_URL} 
+      # - DATABASE_URL=mongodb://mongo:vFhIqhLMNwwcrxOAOZrVVsVswigfFFLj@mongodb.railway.internal:27017/organization
       # - DATABASE_URL=mongodb://db:27017/organization
       - REDIS_URL=redis://redis:6379 
     volumes:
