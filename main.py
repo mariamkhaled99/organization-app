@@ -36,7 +36,7 @@ app.add_middleware(
 )
 
 # MongoDB Connection
-MONGO_URL = os.getenv('DATABASE_URL')
+MONGO_URL = os.getenv('DATABASE_URL','mongodb://mongo:vFhIqhLMNwwcrxOAOZrVVsVswigfFFLj@mongodb.railway.internal:27017')
 print(f"MONGO_URL:{MONGO_URL}")
 client = AsyncIOMotorClient(MONGO_URL)
 db = client["organization_app"]

@@ -27,7 +27,7 @@ router = APIRouter()
 
 # Database setup
 
-MONGO_URL = os.getenv('DATABASE_URL')
+MONGO_URL = os.getenv('DATABASE_URL','mongodb://mongo:vFhIqhLMNwwcrxOAOZrVVsVswigfFFLj@mongodb.railway.internal:27017')
 print(f"MONGO_URL:{MONGO_URL}")
 # MONGO_URL = "mongodb://db:27017/organization"
 client = AsyncIOMotorClient(MONGO_URL)
