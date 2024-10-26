@@ -6,12 +6,12 @@ services:
       - "8080:8080"
     depends_on:
       - db
-      - redis  # Add Redis as a dependency
+      - redis 
     environment:
       - SECRET_KEY=${SECRET_KEY}    
       - ALGORITHM=${ALGORITHUM}     
       - DATABASE_URL=mongodb://db:27017/organization
-      - REDIS_URL=redis://redis:6379  # Add Redis connection URL
+      - REDIS_URL=redis://redis:6379 
     volumes:
       - .:/app  
 
@@ -22,7 +22,7 @@ services:
     volumes:
       - ./data:/data/db
 
-  redis:  # Define the Redis service
-    image: redis:alpine  # Use a lightweight Redis image
+  redis: 
+    image: redis:alpine  
     ports:
-      - "6379:6379"  # Expose Redis port
+      - "6379:6379"  

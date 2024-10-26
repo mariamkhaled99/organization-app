@@ -3,9 +3,15 @@
     "builds": [
       {
         "src": "Dockerfile",
-        "use": "@vercel/docker"
+        "use": "vercel/docker"
       }
     ],
+    "env": {
+      "MONGODB_URI": "mongodb://db:27017/organization",
+      "REDIS_URL": "redis://redis:6379",
+      "SECRET_KEY": "a93b7a5f5a5b84a020d7bccb891c3cff",
+      "ALGORITHUM": "HS256"
+    },
     "routes": [
       {
         "src": "/(.*)",
