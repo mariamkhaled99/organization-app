@@ -6,19 +6,24 @@ from auth.jwt_handler import signin_JWT, decode_token
 from motor.motor_asyncio import AsyncIOMotorClient
 from models.auth import AuthResponseModel, RevokeTokenRequest, SignInModel, SignUpModel
 import redis
-import os
-    
 import jwt
-
-
-
 from routes.organization import get_current_user
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 router = APIRouter()
 
+
+
+
+MONGO_URL = os.getenv('DATABASE_URL')
+
 # Database setup
-MONGO_URL = "mongodb://db:27017/organization"
+# MONGO_URL = "mongodb://db:27017/organization"
 client = AsyncIOMotorClient(MONGO_URL)
 db = client["organization_app"]
 users_collection = db["users"]

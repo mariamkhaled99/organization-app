@@ -6,6 +6,11 @@ from auth.jwt_handler import decode_token
 from models.organization import InviteUserRequest, OrganizationModel
 from motor.motor_asyncio import AsyncIOMotorClient
 from fastapi.security import OAuth2PasswordBearer
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 def organization_helper(org) -> dict:
     return {
@@ -21,7 +26,9 @@ router = APIRouter()
 
 
 # Database setup
-MONGO_URL = "mongodb://db:27017/organization"
+
+MONGO_URL = os.getenv('DATABASE_URL')
+# MONGO_URL = "mongodb://db:27017/organization"
 client = AsyncIOMotorClient(MONGO_URL)
 db = client["organization_app"]
 

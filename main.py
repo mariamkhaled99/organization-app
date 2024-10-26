@@ -7,7 +7,7 @@ import os
 from routes.organization import router as organization_router
 from routes.auth import router as auth_router
 from dotenv import load_dotenv
-
+from pymongo.errors import ServerSelectionTimeoutError
 
 # Load environment variables from .env file
 load_dotenv()
@@ -36,15 +36,21 @@ app.add_middleware(
 )
 
 # MongoDB Connection
-MONGO_URL = os.getenv("MONGO_URL", "mongodb://db:27017/organization")
+MONGO_URL = os.getenv("DATABASE_URL")
 client = AsyncIOMotorClient(MONGO_URL)
 db = client["organization_app"]
 
-@app.get("/")
-async def read_root():
-    return {"JWT_SECRET": JWT_SECRET, "JWT_ALGORITHM": JWT_ALGORITHM}
+@app.get("/health-check")
+async def health_check():
+    try:
+        # Attempt to retrieve a collection list to check the connection
+        await db.list_collection_names()
+        return {"status": "Database connection is healthy"}
+    except ServerSelectionTimeoutError:
+        raise HTTPException(status_code=503, detail="Database connection failed")
+
+
 
 # Include the organization_router with a prefix in the FastAPI app
-app.include_router(organization_router, prefix="/api",tags=['organization'])
-app.include_router(auth_router, prefix="/api",tags=['auth'])
-
+app.include_router(organization_router, prefix="/api", tags=['organization'])
+app.include_router(auth_router, prefix="/api", tags=['auth'])
