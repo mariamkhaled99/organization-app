@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis  # Add Redis as a dependency
+    environment:
+      - SECRET_KEY=${SECRET_KEY}    
+      - ALGORITHM=${ALGORITHUM}     
+      - DATABASE_URL=mongodb://db:27017/organization
+      - REDIS_URL=redis://redis:6379  # Add Redis connection URL
+    volumes:
+      - .:/app  
+
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+
+  redis:  # Define the Redis service
+    image: redis:alpine  # Use a lightweight Redis image
+    ports:
+      - "6379:6379"  # Expose Redis port
